@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Rankings from "./pages/Rankings";
 import Factors from "./pages/Factors";
+import Search from "./pages/Search";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -24,8 +25,12 @@ export default function header()
                         <Rankings />
                     </Route>
 
-                    <Route exact path="/search">
+                    <Route exact path="/factors">
                         <Factors />
+                    </Route>
+
+                    <Route exact path="/search">
+                        <Search />
                     </Route>
 
                     <Route exact path="/register">
@@ -56,6 +61,9 @@ function Nav()
                 </li>
                 <li>
                     <Link to="/rankings">Rankings</Link>
+                </li>
+                <li>
+                    <Link to="/factors">Factors</Link>
                 </li>
                 <li>
                     <Link to="/search">Search</Link>
