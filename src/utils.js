@@ -1,32 +1,27 @@
-export default function FetchData(apiCall, args)
-{
-    let url = "http://131.181.190.87:3000/";
+export default function FetchData(apiCall, args) {
+  let url = "http://131.181.190.87:3000/";
 
-    url += apiCall;
+  url += apiCall;
 
-    if (args){
-        let apiArgs = "";
-        for (let i = 0; i < args.length; i++) {
-            if (i >= 1)
-            {
-                apiArgs += "&" + args[i];
-            }
-            else
-            {
-                apiArgs += "?" + args[i];
-            }
-        }
-        url += apiArgs;
+  if (args) {
+    let apiArgs = "";
+    for (let i = 0; i < args.length; i++) {
+      if (i >= 1) {
+        apiArgs += "&" + args[i];
+      } else {
+        apiArgs += "?" + args[i];
+      }
     }
+    url += apiArgs;
+  }
 
-    console.log("Getting data")
-    console.log(url)
+  console.log("Getting data");
+  console.log(url);
 
-    return fetch(url,{
-            method: 'GET',
-            headers: {
-            'Content-Type' : 'application/json',
-            }
-    })
-        .then((res) => res.json())
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
 }
