@@ -4,8 +4,8 @@ import { PostData } from "../utils";
 
 export default function Login() {
   const [messageState, setMessageState] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("mike@gmail.com");
+  const [password, setPassword] = useState("password");
 
   function DisplayMessage() {
     return <div>{messageState}</div>;
@@ -29,6 +29,11 @@ export default function Login() {
       });
   }
 
+  function ExpireToken() {
+    //im super lazy to do a real implementation so lets hack this in
+    console.log("force expire token");
+    localStorage.setItem("forceExpireToken", true);
+  }
   return (
     <div>
       <h2>Login</h2>
@@ -51,6 +56,8 @@ export default function Login() {
         </label>
         <input type="submit" value="Submit" />
       </form>
+
+      <button onClick={ExpireToken}>Expire Token</button>
 
       <DisplayMessage />
     </div>

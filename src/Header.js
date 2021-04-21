@@ -1,6 +1,9 @@
 import React from "react";
+
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import jwt from "jsonwebtoken";
+import { Alert } from "reactstrap";
 
 // import Home from "./pages/Home";
 // import Rankings from "./pages/Rankings";
@@ -77,4 +80,50 @@ export default function Nav() {
       </ul>
     </nav>
   );
+}
+
+export function ExpiredTokenAlert() {
+  console.log("checking token");
+  console.log(localStorage.getItem("forceExpireToken"));
+
+  //for some reason the returns inside the if statements dont return? need to look into why
+  let returnedAlert;
+
+  if (localStorage.getItem("forceExpireToken") === "true") {
+    console.log("forced token expire");
+    localStorage.removeItem("token");
+    //this prevents this from being actively rendered
+    localStorage.setItem("forceExpireToken", false);
+
+    returnedAlert = (
+      <div>
+        <Alert color="primary">Login token has expired, please re-login.</Alert>
+      </div>
+    );
+  }
+  //prettier forces else if to be on the same line as the } and thats evil
+  else if (localStorage.getItem("token") !== null) {
+    let expTime = jwt.decode(localStorage.getItem("token")).exp;
+    console.log(expTime);
+    if (expTime >= Date.now()) {
+      localStorage.removeItem("token");
+
+      returnedAlert = (
+        <div>
+          <Alert color="primary">
+            Login token has expired, please re-login.
+          </Alert>
+        </div>
+      );
+    }
+  }
+  console.log(returnedAlert);
+  returnedAlert = (
+    <div>
+      <Alert color="primary">Login token has expired, please re-login.</Alert>
+    </div>
+  );
+  console.log(returnedAlert);
+
+  return <div>{returnedAlert}</div>;
 }

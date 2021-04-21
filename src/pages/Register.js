@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import { PostData } from "../utils";
+// import { ExpiredTokenAlert } from "../Header";
+// import { Alert } from "reactstrap";
 
 export default function Register() {
   const [messageState, setMessageState] = useState("");
@@ -29,6 +31,8 @@ export default function Register() {
   }
   return (
     <div>
+      {/* <ExpiredTokenAlert /> */}
+
       <h2>Register</h2>
 
       <form onSubmit={RegisterUser}>

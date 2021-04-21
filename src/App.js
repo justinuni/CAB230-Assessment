@@ -19,6 +19,7 @@ function App() {
       <Router>
         <div className="Header">
           <Nav />
+
           <Switch>
             <Route exact path="/">
               <Home />
