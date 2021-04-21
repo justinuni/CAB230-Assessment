@@ -4,17 +4,20 @@ export default function FetchData(apiCall, args) {
   url += apiCall;
 
   if (args) {
-    let apiArgs = "";
-    for (let i = 0; i < args.length; i++) {
-      if (i >= 1) {
-        apiArgs += "&" + args[i];
-      } else {
-        apiArgs += "?" + args[i];
+    if (Array.isArray(args)) {
+      let apiArgs = "";
+      for (let i = 0; i < args.length; i++) {
+        if (i >= 1) {
+          apiArgs += "&" + args[i];
+        } else {
+          apiArgs += "?" + args[i];
+        }
       }
+      url += apiArgs;
+    } else {
+      url += "?" + args;
     }
-    url += apiArgs;
   }
-
   console.log("Getting data");
   console.log(url);
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FetchData from "../utils";
 
-//import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react/lib/agGridReact";
@@ -25,21 +24,39 @@ export default function Rankings() {
   ];
 
   const [rowData, setRowData] = useState([]);
-  const [rowMaster, setRowMaster] = useState([]);
+  // const [rowMaster, setRowMaster] = useState([]);
 
   const [years, setYears] = useState([]);
 
-  //i hate myself for implementing it like this.
-  //there must be a more elegant way to go about this
-  function FilterResults(year) {
-    let tempResults = rowMaster.filter((row) => {
-      if (row.year == year) {
-        return row;
-      }
-    });
+  // //i hate myself for implementing it like this.
+  // //there must be a more elegant way to go about this
+  // function FilterResults(year) {
+  //   console.log(year);
+  //   let tempResults;
+  //   if (year != "all") {
+  //     tempResults = rowMaster.filter((row) => {
+  //       if (row.year == year) {
+  //         return row;
+  //       }
+  //     });
+  //   } else {
+  //     tempResults = rowMaster;
+  //   }
 
-    console.log(tempResults);
-    setRowData(tempResults);
+  //   console.log(tempResults);
+  //   setRowData(tempResults);
+  // }
+
+  function FilterResults(year) {
+    console.log(year);
+    // if(year == "all")
+    FetchData("rankings", "year=" + year)
+      .then((res) => {
+        console.log("year data returned");
+        console.log(res);
+        setRowData(res);
+      })
+      .catch((err) => console.log("error: " + err));
   }
 
   useEffect(() => {
@@ -48,7 +65,7 @@ export default function Rankings() {
         console.log("data returned");
         console.log(res);
         setRowData(res);
-        setRowMaster(res);
+        // setRowMaster(res);
         return res;
       })
       .then((res) => {
@@ -81,10 +98,7 @@ export default function Rankings() {
             id="testSelect"
             onChange={(year) => FilterResults(year.target.value)}
           >
-            {/* <option>1</option>
-            <option>2</option> */}
-            <test />
-            <option key="8" value="8"></option>
+            <option key="all" value=""></option>
             {years.map((year, index) => (
               <option key={index} value={year}>
                 {year}
