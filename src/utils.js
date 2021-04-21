@@ -1,5 +1,7 @@
+const API_URL = "http://131.181.190.87:3000/";
+
 export default function FetchData(apiCall, args) {
-  let url = "http://131.181.190.87:3000/";
+  let url = API_URL;
 
   url += apiCall;
 
@@ -26,5 +28,25 @@ export default function FetchData(apiCall, args) {
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((res) => res.json());
+}
+
+export function PostData(email, password, postType) {
+  let url = API_URL;
+
+  url += "user/" + postType;
+
+  console.log(`posting ${postType}`);
+
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
   }).then((res) => res.json());
 }
