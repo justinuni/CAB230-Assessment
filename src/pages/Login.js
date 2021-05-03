@@ -29,11 +29,11 @@ export default function Login() {
       });
   }
 
-  function ExpireToken() {
-    //im super lazy to do a real implementation so lets hack this in
-    console.log("force expire token");
-    localStorage.setItem("forceExpireToken", true);
-  }
+  // function ExpireToken() {
+  //   //im super lazy to do a real implementation so lets hack this in
+  //   console.log("force expire token");
+  //   localStorage.setItem("forceExpireToken", true);
+  // }
   return (
     <div>
       <h2>Login</h2>
@@ -57,7 +57,7 @@ export default function Login() {
         <input type="submit" value="Submit" />
       </form>
 
-      <button onClick={ExpireToken}>Expire Token</button>
+      {/* <button onClick={ExpireToken}>Expire Token</button> */}
 
       <DisplayMessage />
     </div>
