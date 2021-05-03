@@ -5,7 +5,7 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react/lib/agGridReact";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 
-import FetchData from "../utils";
+import { FetchData } from "../utils";
 import {
   CartesianGrid,
   Line,

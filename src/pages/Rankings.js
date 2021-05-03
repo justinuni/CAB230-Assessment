@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FetchData from "../utils";
+import { FetchData } from "../utils";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";

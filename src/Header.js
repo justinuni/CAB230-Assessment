@@ -53,6 +53,18 @@ import { Alert } from "reactstrap";
 // }
 
 export default function Nav() {
+  // function CheckIfLoggedIn() {
+  //   let returnedObject = <div></div>;
+  //   if (localStorage.getItem("token") !== null) {
+  //     returnedObject = (
+  // <li>
+  //   <Link to="/logout">Logout</Link>
+  // </li>
+  //     );
+  //   }
+  //   return returnedObject;
+  // }
+
   return (
     <nav>
       <ul>
@@ -77,6 +89,8 @@ export default function Nav() {
         <li>
           <Link to="/logout">Logout</Link>
         </li>
+        {/* <CheckIfLoggedIn />
+        {localStorage.getItem("token") !== null ? <CheckIfLoggedIn /> : null} */}
       </ul>
     </nav>
   );
